@@ -58,9 +58,8 @@ exports.getOrdersController = CatchAsync(async (req, res, next) => {
 // add order
 exports.addOrderController = CatchAsync(async (req, res, next) => {
   const userId = req.userId;
-  const { productId, deliveryStatus, paymentMethod, deliveryAddress } =
-    req.body;
-  if (!productId || !deliveryStatus || !paymentMethod || !deliveryAddress) {
+  const { productId, paymentMethod, deliveryAddress } = req.body;
+  if (!productId || !paymentMethod || !deliveryAddress) {
     return next(new AppError("Please provide all required fields", 400));
   }
   if (!ObjectId.isValid(productId)) {
